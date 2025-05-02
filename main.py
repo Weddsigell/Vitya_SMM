@@ -24,6 +24,7 @@ def main():
     ok_token = env.str('OK_TOKEN')
     sheet_url = env.str('SHEET_URL')
     google_api_json = env.str('GOOGLE_API')
+    vk_token = env.str('VK_API_KEY')
         
     while True:
         posts = get_posts_from_gsheets(sheet_url, google_api_json)
@@ -53,7 +54,7 @@ def main():
             if post['social_media'] == 'tg':
                 publish_post_tg(tg_token, post['id_media'], text, urls_img)
             # elif post['social_media'] == 'vk':
-            #     publish_post_vk(api_key, post['id_media'], text, urls_img)
+            #     publish_post_vk(vk_token, post['id_media'], text, urls_img)
             elif post['social_media'] == 'ok':
                 publish_post_ok(ok_app_key, ok_token, post['id_media'], text, urls_img)
     

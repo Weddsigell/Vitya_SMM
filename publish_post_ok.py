@@ -15,7 +15,7 @@ def publish_post_ok(app_key: str, ok_token: str, id_channel: str, text: str='', 
         )
     if urls_img:
         upload_url = __get_upload_urls(app_key, ok_token, id_channel, len(urls_img))
-        photos = __upload_imgs(app_key, ok_token, upload_url, urls_img)
+        photos = __upload_imgs(upload_url, urls_img)
         tokens = __get_token_img(photos)
         attachment['media'].append(
             {
@@ -52,7 +52,7 @@ def __get_upload_urls(app_key: str, ok_token: str, id_channel: str, count_img: i
     return response['upload_url']
 
 
-def __upload_imgs(app_key: str, ok_token: str, upload_url: str, urls_img: list) -> dict:
+def __upload_imgs(upload_url: str, urls_img: list) -> dict:
     files = {}
     
     for i, url in enumerate(urls_img):
